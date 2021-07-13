@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Weatherdetector</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <h3 class="p-4">Weather Detector App</h3>
+      </div>
+    </nav>
+
+    <div class="alert alert-light container text-center mt-3" role="alert">
+      {% if user.is_authenticated %}
+      <h2 class="mb-4">
+        <a style="text-decoration: none" href="logout">Logout</a>
+      </h2>
+      <br />
+
+      Welcome
+      <h2>{{user.username}}</h2>
+
+      A system that detect current weather condition <br />
+      <br />
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="cityname"
+            placeholder="Enter country name"
+          />
+          <input class="mt-4 btn btn-primary" type="submit" value="Search" />
+        </div>
+      </form>
+
+      <div>
+        <h2>City: {{city}}</h2>
+        <h3>Country code: {{data.country_code}}</h3>
+        <h5>Coordinate:{{data.coordinate}}</h5>
+        <h5>Temp: {{data.temp}}</h5>
+        <h5>Pressure: {{data.pressure}}</h5>
+        <h5>Humidity: {{data.humidity}}</h5>
+      </div>
+
+      {% else %}
+
+      <h2 class="mb-4 p-4">
+        <a style="text-decoration: none" href="login">Login</a>
+      </h2>
+      Welcome toWeather app <br />
+      A system that detect current weather condition {% endif %}
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
